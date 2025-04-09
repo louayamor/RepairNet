@@ -1,6 +1,8 @@
 package itbs.louayamor.repairnet.bean;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
 import lombok.*;
 
 import java.time.LocalDate;
@@ -24,11 +26,14 @@ public class Equipment {
     private UUID uuid = UUID.randomUUID();
 
     @Column(nullable = false)
+    @NotNull(message = "Name is required")
     private String name;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @NotNull(message = "Status is required")
     private EquipmentStatus status;
 
     private LocalDate acquisitionDate;
+    
 }

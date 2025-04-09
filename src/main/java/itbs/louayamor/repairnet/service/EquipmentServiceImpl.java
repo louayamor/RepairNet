@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class EquipmentServiceImpl implements EquipmentService {
@@ -30,6 +31,12 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     public Equipment saveEquipment(Equipment equipment) {
+        // Generate UUID if not set
+        if (equipment.getUuid() == null) {
+            equipment.setUuid(UUID.randomUUID());
+        }
+
+        // Save the equipment entity to the database
         return equipmentRepo.save(equipment);
     }
 

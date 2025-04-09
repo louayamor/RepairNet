@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import itbs.louayamor.repairnet.bean.Equipment;
 import itbs.louayamor.repairnet.service.EquipmentService;
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/equipment")
@@ -36,11 +39,10 @@ public class EquipmentController {
         return equipment.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    @PostMapping("/api/equipment")
-    public ResponseEntity<Equipment> saveEquipment(@RequestBody Equipment equipment) {
-        logger.info("Received request to save equipment: {}", equipment);
+    @PostMapping
+    public ResponseEntity<Equipment> saveEquipment(@Valid @RequestBody Equipment equipment){
+    	
         Equipment savedEquipment = equipmentService.saveEquipment(equipment);
-        logger.info("Equipment saved successfully: {}", savedEquipment);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedEquipment);
     }
 
