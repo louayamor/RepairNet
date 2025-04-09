@@ -30,5 +30,5 @@ public class Technician {
     private List<String> skills;
 
     @Column(nullable = false)
-    private Boolean availability; 
+    private Boolean available; 
 }

@@ -33,5 +33,5 @@ public class Fault {
     private Equipment equipment;  
 
     @Column(name = "report_date", nullable = false)
-    private LocalDateTime reportDate;  
+    private LocalDateTime dateReported;  
 }
