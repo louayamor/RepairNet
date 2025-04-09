@@ -1,4 +1,4 @@
-package itbs.louayamor.repairnet.bean;
+package itbs.louayamor.repairnet.enumerator;
 
 public enum EquipmentStatus {
 	    OPERATIONAL,

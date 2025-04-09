@@ -6,6 +6,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import itbs.louayamor.repairnet.enumerator.FaultCategory;
+
 @Entity
 @Table(name = "faults")
 @Data

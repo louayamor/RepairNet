@@ -6,6 +6,8 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import itbs.louayamor.repairnet.enumerator.EquipmentStatus;
+
 @Entity
 @Table(name = "equipment")
 @Data

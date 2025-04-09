@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import itbs.louayamor.repairnet.enumerator.InterventionStatus;
+
 @Entity
 @Table(name = "intervention")
 @Data

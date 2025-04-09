@@ -1,7 +1,8 @@
 package itbs.louayamor.repairnet.repository;
 
 import itbs.louayamor.repairnet.bean.Equipment;
-import itbs.louayamor.repairnet.bean.EquipmentStatus;
+import itbs.louayamor.repairnet.enumerator.EquipmentStatus;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
