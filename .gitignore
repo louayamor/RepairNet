@@ -35,3 +35,41 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# IDE Files
+.idea/
+*.iml
+.vscode/
+
+# Build directories
+target/
+build/
+
+# Maven Wrapper
+.mvn/
+
+# Gradle Wrapper
+.gradle/
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+logs/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Java class files
+*.class
+
+# JAR, WAR, or any packaged files
+*.jar
+*.war
+*.tar
+
+# Configuration files (optional)
+application.properties
+application.yml
