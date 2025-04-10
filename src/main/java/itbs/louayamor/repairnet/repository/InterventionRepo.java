@@ -9,14 +9,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface InterventionRepo extends JpaRepository<Intervention, Long> {
-
     List<Intervention> findByTechnicianId(Long technicianId);
-    
     List<Intervention> findByEquipmentId(Long equipmentId);
-
     Optional<Intervention> findByUuid(UUID uuid);
-
     List<Intervention> findByStatus(String status);
-    
     List<Intervention> findByDate(LocalDate date);
 }
