@@ -12,22 +12,13 @@ public interface TechnicianRepo extends JpaRepository<Technician, Long> {
 
     @SuppressWarnings("unchecked")
 	Technician save(Technician technician);
-
     Optional<Technician> findById(Long id);
-
     List<Technician> findAll();
-
     void deleteById(Long id);
-
     boolean existsById(Long id);
-
     Technician findByUuid(UUID uuid);
-
     List<Technician> findByNameContainingIgnoreCase(String name);
-
     List<Technician> findBySkillsIn(List<Skill> skills);
-
     List<Technician> findByAvailableTrue();
-
     Technician findByName(String name);
 }
