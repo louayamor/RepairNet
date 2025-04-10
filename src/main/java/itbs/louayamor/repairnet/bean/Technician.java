@@ -24,10 +24,8 @@ public class Technician {
     @Column(nullable = false)
     private String name;
 
-    @ElementCollection
-    @CollectionTable(name = "technician_skills", joinColumns = @JoinColumn(name = "technician_id"))
-    @Column(name = "skill")
-    private List<String> skills;
+    @OneToMany(mappedBy = "technician", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Skill> skills;
 
     @Column(nullable = false)
     private Boolean available; 
