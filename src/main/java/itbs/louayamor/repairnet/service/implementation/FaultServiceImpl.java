@@ -1,8 +1,10 @@
-package itbs.louayamor.repairnet.service;
+package itbs.louayamor.repairnet.service.implementation;
 
 import itbs.louayamor.repairnet.bean.Fault;
 import itbs.louayamor.repairnet.bean.Equipment;
 import itbs.louayamor.repairnet.repository.FaultRepo;
+import itbs.louayamor.repairnet.service.FaultService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

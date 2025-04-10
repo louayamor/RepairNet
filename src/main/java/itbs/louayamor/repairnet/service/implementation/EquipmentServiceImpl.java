@@ -1,7 +1,9 @@
-package itbs.louayamor.repairnet.service;
+package itbs.louayamor.repairnet.service.implementation;
 
 import itbs.louayamor.repairnet.bean.Equipment;
 import itbs.louayamor.repairnet.repository.EquipmentRepo;
+import itbs.louayamor.repairnet.service.EquipmentService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
