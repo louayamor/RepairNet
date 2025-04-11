@@ -2,6 +2,7 @@ package itbs.louayamor.repairnet.service.implementation;
 
 import itbs.louayamor.repairnet.bean.Skill;
 import itbs.louayamor.repairnet.bean.Technician;
+import itbs.louayamor.repairnet.repository.SkillRepo;
 import itbs.louayamor.repairnet.repository.TechnicianRepo;
 import itbs.louayamor.repairnet.service.TechnicianService;
 
@@ -16,10 +17,12 @@ import java.util.UUID;
 public class TechnicianServiceImpl implements TechnicianService {
 
     private final TechnicianRepo technicianRepo;
+    private final SkillRepo skillRepo;
 
     @Autowired
-    public TechnicianServiceImpl(TechnicianRepo technicianRepo) {
+    public TechnicianServiceImpl(TechnicianRepo technicianRepo, SkillRepo skillRepo) {
         this.technicianRepo = technicianRepo;
+        this.skillRepo = skillRepo;
     }
 
     @Override
@@ -70,5 +73,17 @@ public class TechnicianServiceImpl implements TechnicianService {
     @Override
     public Technician getTechnicianByName(String name) {
         return technicianRepo.findByName(name);
+    }
+    
+    @Override
+    public Technician addSkillToTechnician(Long technicianId, Skill skill) {
+        Technician technician = technicianRepo.findById(technicianId)
+                .orElseThrow(() -> new RuntimeException("Technician not found"));
+
+        skill.setTechnician(technician); 
+        skillRepo.save(skill); 
+
+        technician.getSkills().add(skill); 
+        return technicianRepo.save(technician); 
     }
 }

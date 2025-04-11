@@ -18,4 +18,5 @@ public interface TechnicianService {
     List<Technician> findTechniciansBySkills(List<Skill> skills);
     List<Technician> getAvailableTechnicians();
     Technician getTechnicianByName(String name);
+    Technician addSkillToTechnician(Long technicianId, Skill skill);
 }

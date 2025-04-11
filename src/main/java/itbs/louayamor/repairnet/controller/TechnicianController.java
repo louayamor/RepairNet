@@ -49,8 +49,17 @@ public class TechnicianController {
     @PostMapping
     public ResponseEntity<?> saveTechnician(@Valid @RequestBody Technician technician) {
         try {
-            Technician saved = technicianService.saveTechnician(technician);
-            return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+            if (technician.getSkills() != null && !technician.getSkills().isEmpty()) {
+                for (Skill skill : technician.getSkills()) {
+                    if (skill.getId() == null) { 
+                        technicianService.saveSkill(skill);
+                    }
+                }
+            }
+
+            Technician savedTechnician = technicianService.saveTechnician(technician);
+            
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedTechnician);
         } catch (Exception e) {
             logger.error("Error saving technician: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Could not save technician.");
