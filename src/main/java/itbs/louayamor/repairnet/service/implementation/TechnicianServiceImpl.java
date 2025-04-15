@@ -16,14 +16,13 @@ import java.util.UUID;
 @Service
 public class TechnicianServiceImpl implements TechnicianService {
 
-    private final TechnicianRepo technicianRepo;
-    private final SkillRepo skillRepo;
+	@Autowired
+    private TechnicianRepo technicianRepo;
+	@Autowired
+    private SkillRepo skillRepo;
 
-    @Autowired
-    public TechnicianServiceImpl(TechnicianRepo technicianRepo, SkillRepo skillRepo) {
-        this.technicianRepo = technicianRepo;
-        this.skillRepo = skillRepo;
-    }
+    
+    
 
     @Override
     public Technician saveTechnician(Technician technician) {

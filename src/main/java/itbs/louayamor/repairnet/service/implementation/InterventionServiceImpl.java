@@ -14,12 +14,8 @@ import java.util.UUID;
 @Service
 public class InterventionServiceImpl implements InterventionService {
 
-    private final InterventionRepo interventionRepo;
-
-    @Autowired
-    public InterventionServiceImpl(InterventionRepo interventionRepo) {
-        this.interventionRepo = interventionRepo;
-    }
+	@Autowired
+    private InterventionRepo interventionRepo;
 
     @Override
     public Intervention saveIntervention(Intervention intervention) {

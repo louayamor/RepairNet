@@ -17,12 +17,8 @@ import java.util.UUID;
 @Service
 public class FaultServiceImpl implements FaultService {
 
-    private final FaultRepo faultRepo;
-
-    @Autowired
-    public FaultServiceImpl(FaultRepo faultRepo) {
-        this.faultRepo = faultRepo;
-    }
+	@Autowired
+    private FaultRepo faultRepo;
 
     @Override
     public Fault saveFault(Fault fault) {
