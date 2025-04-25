@@ -12,8 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import itbs.louayamor.repairnet.bean.CustomAuthenticationEntryPoint;
-
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
