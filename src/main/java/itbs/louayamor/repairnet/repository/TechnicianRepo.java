@@ -9,9 +9,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface TechnicianRepo extends JpaRepository<Technician, Long> {
-
-    @SuppressWarnings("unchecked")
-	Technician save(Technician technician);
     Optional<Technician> findById(Long id);
     List<Technician> findAll();
     void deleteById(Long id);

@@ -11,7 +11,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface FaultRepo extends JpaRepository<Fault, Long> {
-    Fault save(Fault fault);
     Optional<Fault> findById(Long id);
     List<Fault> findAll();
     void deleteById(Long id);

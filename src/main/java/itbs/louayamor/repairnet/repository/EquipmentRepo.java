@@ -12,8 +12,6 @@ import java.util.UUID;
 
 public interface EquipmentRepo extends JpaRepository<Equipment, Long> {
 
-    Equipment save(Equipment equipment);
-
     Optional<Equipment> findById(Long id);
 
     //Main CRUD
