@@ -13,7 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 @RestController
@@ -29,6 +35,34 @@ public class TechnicianController {
         this.technicianService = technicianService;
     }
 
+    @PostMapping("/{id}/uploadImage")
+    public ResponseEntity<?> uploadImage(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
+        try {
+            Technician technician = technicianService.getTechnicianById(id)
+                .orElseThrow(() -> new RuntimeException("Technician not found"));
+
+            // Save file to disk (you can customize the path)
+            String uploadDir = "uploads/technician-images/";
+            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
+
+            // Make sure the directory exists
+            File uploadFolder = new File(uploadDir);
+            if (!uploadFolder.exists()) uploadFolder.mkdirs();
+
+            Path filePath = Paths.get(uploadDir, fileName);
+            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+            // Save the file path or URL in Equipment
+            technician.setImageUrl("/" + uploadDir + fileName);
+            technicianService.saveTechnician(technician);
+
+            return ResponseEntity.ok("Image uploaded successfully");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image");
+        }
+    }
+    
     @GetMapping
     public ResponseEntity<List<Technician>> getAllTechnicians() {
         List<Technician> technicians = technicianService.getAllTechnicians();

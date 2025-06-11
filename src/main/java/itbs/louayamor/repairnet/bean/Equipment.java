@@ -36,4 +36,7 @@ public class Equipment {
 
     private LocalDate acquisitionDate;
     
+    @Column(name = "image_url", length = 512)  
+    private String imageUrl;
+    
 }

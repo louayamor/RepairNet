@@ -9,11 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -29,6 +36,34 @@ public class EquipmentController {
         this.equipmentService = equipmentService;
     }
 
+    @PostMapping("/{id}/uploadImage")
+    public ResponseEntity<?> uploadImage(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
+        try {
+            Equipment equipment = equipmentService.getEquipmentById(id)
+                .orElseThrow(() -> new RuntimeException("Equipment not found"));
+
+            // Save file to disk (you can customize the path)
+            String uploadDir = "uploads/equipment-images/";
+            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
+
+            // Make sure the directory exists
+            File uploadFolder = new File(uploadDir);
+            if (!uploadFolder.exists()) uploadFolder.mkdirs();
+
+            Path filePath = Paths.get(uploadDir, fileName);
+            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+            // Save the file path or URL in Equipment
+            equipment.setImageUrl("/" + uploadDir + fileName);
+            equipmentService.saveEquipment(equipment);
+
+            return ResponseEntity.ok("Image uploaded successfully");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image");
+        }
+    }
+    
     // Get all equipment
     @GetMapping
     public ResponseEntity<List<Equipment>> getAllEquipment() {

@@ -29,4 +29,7 @@ public class Technician {
 
     @Column(nullable = false)
     private Boolean available; 
+    
+    @Column(name = "image_url", length = 512)  
+    private String imageUrl;
 }

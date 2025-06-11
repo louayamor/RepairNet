@@ -1,6 +1,7 @@
 package itbs.louayamor.repairnet.service.implementation;
 
 import itbs.louayamor.repairnet.bean.Equipment;
+import itbs.louayamor.repairnet.enumerator.EquipmentStatus;
 import itbs.louayamor.repairnet.repository.EquipmentRepo;
 import itbs.louayamor.repairnet.service.EquipmentService;
 
@@ -34,6 +35,10 @@ public class EquipmentServiceImpl implements EquipmentService {
             equipment.setUuid(UUID.randomUUID());
         }
 
+        if (equipment.getStatus() == null) {
+            equipment.setStatus(EquipmentStatus.UNDER_MAINTENANCE);
+        }
+        
         return equipmentRepo.save(equipment);
     }
 
